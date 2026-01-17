@@ -1,1 +1,128 @@
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  background: #fafafa;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background: #fff;
+  padding: 30px 0;
+  border-bottom: 1px solid #e3e3e3;
+  text-align: center;
+}
+.site-header .brand {
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.site-header .tagline {
+  font-size: 16px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* ===== PRODUCT PAGE LAYOUT ===== */
+.product-page {
+  padding: 40px 0;
+}
+
+.product-view {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ===== IMAGE SECTION ===== */
+.product-images {
+  flex: 1 1 400px;
+}
+.product-images .main-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== PRODUCT DETAILS ===== */
+.product-details {
+  flex: 1 1 400px;
+}
+.product-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.price {
+  font-size: 24px;
+  color: #b12704;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.short-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ===== BUTTON ===== */
+.btn.add-to-cart {
+  background: #111;
+  color: #fff;
+  padding: 14px 36px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  margin-bottom: 28px;
+}
+.btn.add-to-cart:hover {
+  background: #333;
+}
+
+/* ===== PRODUCT INFO BLOCKS ===== */
+.product-info-block {
+  margin-top: 32px;
+}
+.product-info-block h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.product-info-block ul {
+  padding-left: 18px;
+  list-style: disc;
+}
+.product-info-block ul li {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #444;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .product-view {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .btn.add-to-cart {
+    width: 100%;
+    text-align: center;
+  }
+}
 
