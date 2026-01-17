@@ -1,12 +1,54 @@
 /* Reset & base */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-body { color: #333; line-height: 1.6; background: #fff; }
+body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth; }
 
-/* Hero Section */
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.navbar .logo { font-size: 1.8rem; font-weight: bold; color: #d4af37; }
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+.navbar ul li a:hover { color: #d4af37; }
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/* Hero */
 .hero {
     position: relative;
-    height: 100vh;
-    background: url('hero.jpg') center/cover no-repeat;
+    height: 80vh;
+    background: url('images/hero.jpg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,18 +91,7 @@ body { color: #333; line-height: 1.6; background: #fff; }
 .carousel-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
 .carousel-item:hover img { transform: scale(1.1); }
 
-/* Our Story */
+/* Story */
 .story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
 .story-text { flex: 1 1 400px; padding: 20px; }
-.story-text h2 { font-size: 2rem; margin-bottom: 20px; }
-.story-image { flex: 1 1 400px; padding: 20px; }
-.story-image img { width: 100%; border-radius: 10px; }
-
-/* Footer */
-footer { text-align: center; padding: 20px; background: #333; color: #fff; }
-
-/* Responsive */
-@media(max-width: 768px){
-    .hero .overlay { padding: 20px; }
-    .story { flex-direction: column; }
-}
+.story-text h2
