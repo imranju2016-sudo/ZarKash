@@ -14,15 +14,15 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
     position: sticky;
     top: 0;
     width: 100%;
-    background: #fff;
+    background: #1a1a1a; /* dark premium background */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
 }
-.navbar .logo { font-size: 1.8rem; font-weight: bold; color: #333; }
+.navbar .logo { font-size: 1.8rem; font-weight: bold; color: #d4af37; }
 .navbar ul {
     display: flex;
     list-style: none;
@@ -30,12 +30,26 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 }
 .navbar ul li a {
     text-decoration: none;
-    color: #333;
+    color: #fff; /* contrasting color */
     font-weight: bold;
     padding: 5px 0;
     transition: 0.3s;
 }
 .navbar ul li a:hover { color: #d4af37; }
+
+/* Hamburger menu (mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 4px 0;
+    transition: 0.3s;
+}
 
 /* Hero Section */
 .hero {
@@ -96,9 +110,18 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 
 /* Responsive */
 @media(max-width: 768px){
-    .navbar ul { flex-direction: column; gap: 10px; margin-top: 10px; }
-    .hero .overlay { padding: 20px; }
-    .story { flex-direction: column; }
+    .navbar ul { 
+        position: absolute;
+        top: 65px;
+        left: -100%;
+        flex-direction: column;
+        background: #1a1a1a;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+    }
+    .navbar ul.active { left: 0; }
+    .hamburger { display: flex; }
 }
 </style>
 </head>
@@ -107,7 +130,12 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 <!-- Top Navigation -->
 <nav class="navbar">
     <div class="logo">ZarKash</div>
-    <ul>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul id="nav-menu">
         <li><a href="#collection">SHAWLS</a></li>
         <li><a href="#wraps">WRAPS</a></li>
         <li><a href="#scarves">SCARVES</a></li>
@@ -141,7 +169,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     </div>
 </section>
 
-<!-- Placeholder sections for other menu items -->
+<!-- Placeholder sections -->
 <section id="wraps" style="height:400px; text-align:center; padding:50px;"><h2>WRAPS Section</h2></section>
 <section id="scarves" style="height:400px; text-align:center; padding:50px;"><h2>SCARVES Section</h2></section>
 <section id="mens" style="height:400px; text-align:center; padding:50px;"><h2>MEN'S Section</h2></section>
@@ -166,8 +194,9 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     <p>&copy; 2026 ZarKash. All rights reserved.</p>
 </footer>
 
-<!-- Carousel JS -->
+<!-- JS -->
 <script>
+// Carousel
 const track = document.querySelector('.carousel-track');
 const items = Array.from(track.children);
 let index = 0;
@@ -178,8 +207,15 @@ function moveCarousel() {
     if(index >= items.length) index = 0;
     track.style.transform = `translateX(-${index * itemWidth}px)`;
 }
-
 setInterval(moveCarousel, 3000);
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
 </script>
 
 </body>
