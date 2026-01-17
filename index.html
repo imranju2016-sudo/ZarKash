@@ -1,69 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zarkash Shawls</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZarKash</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">Zarkash</div>
-    <nav>
-      <ul>
-        <li><a href="#collection">Products</a></li>
-        <li><a href="#story">Our Story</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Header / Hero Section -->
+    <header class="hero">
+        <div class="overlay">
+            <h1 class="brand-name">ZarKash</h1>
+            <p>Luxury Handcrafted Shawls</p>
+            <a href="#collection" class="btn">Explore Collection</a>
+        </div>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Wrap Yourself in Elegance</h1>
-    <p>Handcrafted Pashmina Shawls with timeless charm</p>
-    <a href="#collection" class="btn">Explore Collection</a>
-  </section>
+    <!-- Shawl Collection Carousel -->
+    <section id="collection" class="carousel-section">
+        <h2>Our Collection</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-item"><img src="pashmina1.jpg" alt="Shawl 1"></div>
+                <div class="carousel-item"><img src="pashmina2.jpg" alt="Shawl 2"></div>
+                <div class="carousel-item"><img src="pashmina3.jpg" alt="Shawl 3"></div>
+                <div class="carousel-item"><img src="pashmina4.jpg" alt="Shawl 4"></div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Collection Section -->
-  <section id="collection">
-    <h2>Our Shawls</h2>
-    <div class="gallery">
-      <div class="card">
-        <img src="images/shawl1.jpg" alt="Classic Pashmina Shawl">
-        <h3>Classic Pashmina Shawl</h3>
-        <p>₹4,200</p>
-      </div>
-      <div class="card">
-        <img src="images/shawl2.jpg" alt="Elegant Wool Shawl">
-        <h3>Elegant Wool Shawl</h3>
-        <p>₹4,800</p>
-      </div>
-      <div class="card">
-        <img src="images/shawl3.jpg" alt="Heritage Handwoven Shawl">
-        <h3>Heritage Handwoven Shawl</h3>
-        <p>₹5,200</p>
-      </div>
-    </div>
-  </section>
+    <!-- Our Story Section -->
+    <section class="story">
+        <div class="story-text">
+            <h2>Our Story</h2>
+            <p>ZarKash blends timeless tradition with modern elegance, crafting shawls that speak of heritage, warmth, and luxury.</p>
+        </div>
+        <div class="story-image">
+            <img src="story.jpg" alt="Our Story">
+        </div>
+    </section>
 
-  <!-- Story Section -->
-  <section id="story">
-    <h2>Our Story</h2>
-    <p>We celebrate the timeless art of Pashmina. Every shawl is handwoven by skilled Kashmiri artisans, blending heritage craftsmanship with luxurious comfort. Our mission is to bring warmth, elegance, and artistry to your wardrobe.</p>
-    <img src="images/artisans.jpg" alt="Our Artisans at Work" class="story-img">
-  </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ZarKash. All rights reserved.</p>
+    </footer>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@zarkash.com</p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Zarkash Shawls. All rights reserved.</p>
-  </footer>
+    <script src="script.js"></script>
 </body>
 </html>
