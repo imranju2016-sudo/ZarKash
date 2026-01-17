@@ -94,4 +94,25 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 /* Story */
 .story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
 .story-text { flex: 1 1 400px; padding: 20px; }
-.story-text h2
+.story-text h2 { font-size: 2rem; margin-bottom: 20px; }
+.story-image { flex: 1 1 400px; padding: 20px; }
+.story-image img { width: 100%; border-radius: 10px; }
+
+/* Footer */
+footer { text-align: center; padding: 20px; background: #333; color: #fff; }
+
+/* Responsive */
+@media(max-width: 768px){
+    .navbar ul { 
+        position: absolute;
+        top: 65px;
+        left: -100%;
+        flex-direction: column;
+        background: #1a1a1a;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+    }
+    .navbar ul.active { left: 0; }
+    .hamburger { display: flex; }
+}
