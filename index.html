@@ -7,13 +7,41 @@
 <style>
 /* Reset & base */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-body { color: #333; line-height: 1.6; background: #fff; }
+body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth; }
+
+/* Top Navigation */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+.navbar .logo { font-size: 1.8rem; font-weight: bold; color: #333; }
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+.navbar ul li a:hover { color: #d4af37; }
 
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    background: url('shawl.hero.jpg') center/cover no-repeat;
+    height: 80vh;
+    background: url('hero.jpg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +64,7 @@ body { color: #333; line-height: 1.6; background: #fff; }
 }
 .btn:hover { background: #b8962f; }
 
-/* Carousel */
+/* Carousel Section */
 .carousel-section { padding: 50px 20px; text-align: center; background: #f8f8f8; }
 .carousel-section h2 { margin-bottom: 30px; font-size: 2rem; }
 .carousel-container { overflow: hidden; max-width: 1200px; margin: 0 auto; }
@@ -56,7 +84,7 @@ body { color: #333; line-height: 1.6; background: #fff; }
 .carousel-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
 .carousel-item:hover img { transform: scale(1.1); }
 
-/* Our Story */
+/* Our Story Section */
 .story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
 .story-text { flex: 1 1 400px; padding: 20px; }
 .story-text h2 { font-size: 2rem; margin-bottom: 20px; }
@@ -68,6 +96,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 
 /* Responsive */
 @media(max-width: 768px){
+    .navbar ul { flex-direction: column; gap: 10px; margin-top: 10px; }
     .hero .overlay { padding: 20px; }
     .story { flex-direction: column; }
 }
@@ -75,7 +104,22 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 </head>
 <body>
 
-<!-- Header / Hero Section -->
+<!-- Top Navigation -->
+<nav class="navbar">
+    <div class="logo">ZarKash</div>
+    <ul>
+        <li><a href="#collection">SHAWLS</a></li>
+        <li><a href="#wraps">WRAPS</a></li>
+        <li><a href="#scarves">SCARVES</a></li>
+        <li><a href="#mens">MEN'S</a></li>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#shop">SHOP BY</a></li>
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#editorial">EDITORIAL</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
 <header class="hero">
     <div class="overlay">
         <h1 class="brand-name">ZarKash</h1>
@@ -84,18 +128,27 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     </div>
 </header>
 
-<!-- Shawl Collection Carousel -->
+<!-- Carousel Section -->
 <section id="collection" class="carousel-section">
     <h2>Our Collection</h2>
     <div class="carousel-container">
         <div class="carousel-track">
-            <div class="carousel-item"><img src="shawl.1jpg" alt="Shawl 1"></div>
-            <div class="carousel-item"><img src="shawl.2jpg" alt="Shawl 2"></div>
-            <div class="carousel-item"><img src="shawl.3jpg" alt="Shawl 3"></div>
-            <div class="carousel-item"><img src="shawl.4jpg" alt="Shawl 4"></div>
+            <div class="carousel-item"><img src="shawl1.jpg" alt="Shawl 1"></div>
+            <div class="carousel-item"><img src="shawl2.jpg" alt="Shawl 2"></div>
+            <div class="carousel-item"><img src="shawl3.jpg" alt="Shawl 3"></div>
+            <div class="carousel-item"><img src="shawl4.jpg" alt="Shawl 4"></div>
         </div>
     </div>
 </section>
+
+<!-- Placeholder sections for other menu items -->
+<section id="wraps" style="height:400px; text-align:center; padding:50px;"><h2>WRAPS Section</h2></section>
+<section id="scarves" style="height:400px; text-align:center; padding:50px;"><h2>SCARVES Section</h2></section>
+<section id="mens" style="height:400px; text-align:center; padding:50px;"><h2>MEN'S Section</h2></section>
+<section id="home" style="height:400px; text-align:center; padding:50px;"><h2>HOME Section</h2></section>
+<section id="shop" style="height:400px; text-align:center; padding:50px;"><h2>SHOP BY Section</h2></section>
+<section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
+<section id="editorial" style="height:400px; text-align:center; padding:50px;"><h2>EDITORIAL Section</h2></section>
 
 <!-- Our Story Section -->
 <section class="story">
@@ -104,7 +157,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
         <p>ZarKash blends timeless tradition with modern elegance, crafting shawls that speak of heritage, warmth, and luxury.</p>
     </div>
     <div class="story-image">
-        <img src="shawl.story.jpg" alt="Our Story">
+        <img src="story.jpg" alt="Our Story">
     </div>
 </section>
 
@@ -113,13 +166,12 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     <p>&copy; 2026 ZarKash. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript for carousel -->
+<!-- Carousel JS -->
 <script>
 const track = document.querySelector('.carousel-track');
 const items = Array.from(track.children);
-
 let index = 0;
-const itemWidth = items[0].getBoundingClientRect().width + 20; // include gap
+const itemWidth = items[0].getBoundingClientRect().width + 20;
 
 function moveCarousel() {
     index++;
@@ -127,7 +179,7 @@ function moveCarousel() {
     track.style.transform = `translateX(-${index * itemWidth}px)`;
 }
 
-setInterval(moveCarousel, 3000); // slides every 3 seconds
+setInterval(moveCarousel, 3000);
 </script>
 
 </body>
