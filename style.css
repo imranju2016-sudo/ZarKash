@@ -78,8 +78,16 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 .carousel-track {
     display: flex;
     gap: 20px;
-    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: scrollCarousel 30s linear infinite;
 }
+
+@keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* scroll left */
+}
+
 .carousel-item {
     min-width: 300px;
     flex-shrink: 0;
