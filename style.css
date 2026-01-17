@@ -116,3 +116,21 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     .navbar ul.active { left: 0; }
     .hamburger { display: flex; }
 }
+/* === Image resizing and zoom === */
+img {
+  max-width: 100%;   /* image never exceeds container width */
+  height: auto;      /* keeps proportions correct */
+  display: block;    /* removes inline gaps */
+  margin: 0 auto;    /* center images */
+}
+
+/* Optional: for gallery images, zoom on hover */
+.gallery img {
+  width: 300px;           /* fixed display size, adjust as needed */
+  height: auto;
+  transition: transform 0.3s ease;  /* smooth zoom */
+}
+
+.gallery img:hover {
+  transform: scale(1.1);   /* zoom-in on hover */
+}
