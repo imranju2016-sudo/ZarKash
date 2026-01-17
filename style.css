@@ -88,8 +88,17 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
     cursor: pointer;
     transition: transform 0.3s;
 }
-.carousel-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
-.carousel-item:hover img { transform: scale(1.1); }
+.carousel-item img {
+    width: 300px;        /* adjust as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 10px; /* optional: rounded corners */
+}
+
+.carousel-item img:hover {
+    transform: scale(1.1); /* zoom on hover */
+}
+
 
 /* Story */
 .story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
