@@ -1,51 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZarKash</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZarKash</title>
+<style>
+/* Reset & base */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { color: #333; line-height: 1.6; background: #fff; }
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url('shawl.hero.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero .overlay {
+    background: rgba(0,0,0,0.4);
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+.brand-name { font-size: 3rem; letter-spacing: 2px; margin-bottom: 10px; }
+.hero p { font-size: 1.2rem; margin-bottom: 20px; }
+.btn {
+    background: #d4af37;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn:hover { background: #b8962f; }
+
+/* Carousel */
+.carousel-section { padding: 50px 20px; text-align: center; background: #f8f8f8; }
+.carousel-section h2 { margin-bottom: 30px; font-size: 2rem; }
+.carousel-container { overflow: hidden; max-width: 1200px; margin: 0 auto; }
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-item {
+    min-width: 300px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.carousel-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
+.carousel-item:hover img { transform: scale(1.1); }
+
+/* Our Story */
+.story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
+.story-text { flex: 1 1 400px; padding: 20px; }
+.story-text h2 { font-size: 2rem; margin-bottom: 20px; }
+.story-image { flex: 1 1 400px; padding: 20px; }
+.story-image img { width: 100%; border-radius: 10px; }
+
+/* Footer */
+footer { text-align: center; padding: 20px; background: #333; color: #fff; }
+
+/* Responsive */
+@media(max-width: 768px){
+    .hero .overlay { padding: 20px; }
+    .story { flex-direction: column; }
+}
+</style>
 </head>
 <body>
-    <!-- Header / Hero Section -->
-    <header class="hero" style="background-image: url('shawl.hero.jpg');">
-        <div class="overlay">
-            <h1 class="brand-name">ZarKash</h1>
-            <p>Luxury Handcrafted Shawls</p>
-            <a href="#collection" class="btn">Explore Collection</a>
-        </div>
-    </header>
 
-    <!-- Shawl Collection Carousel -->
-    <section id="collection" class="carousel-section">
-        <h2>Our Collection</h2>
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <div class="carousel-item"><img src="pashmina1.jpg" alt="Shawl 1"></div>
-                <div class="carousel-item"><img src="pashmina2.jpg" alt="Shawl 2"></div>
-                <div class="carousel-item"><img src="pashmina3.jpg" alt="Shawl 3"></div>
-                <div class="carousel-item"><img src="pashmina4.jpg" alt="Shawl 4"></div>
-            </div>
-        </div>
-    </section>
+<!-- Header / Hero Section -->
+<header class="hero">
+    <div class="overlay">
+        <h1 class="brand-name">ZarKash</h1>
+        <p>Luxury Handcrafted Shawls</p>
+        <a href="#collection" class="btn">Explore Collection</a>
+    </div>
+</header>
 
-    <!-- Our Story Section -->
-    <section class="story">
-        <div class="story-text">
-            <h2>Our Story</h2>
-            <p>ZarKash blends timeless tradition with modern elegance, crafting shawls that speak of heritage, warmth, and luxury.</p>
+<!-- Shawl Collection Carousel -->
+<section id="collection" class="carousel-section">
+    <h2>Our Collection</h2>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <div class="carousel-item"><img src="shawl.1jpg" alt="Shawl 1"></div>
+            <div class="carousel-item"><img src="shawl.2jpg" alt="Shawl 2"></div>
+            <div class="carousel-item"><img src="shawl.3jpg" alt="Shawl 3"></div>
+            <div class="carousel-item"><img src="shawl.4jpg" alt="Shawl 4"></div>
         </div>
-        <div class="story-image">
-            <img src="story.jpg" alt="Our Story">
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 ZarKash. All rights reserved.</p>
-    </footer>
+<!-- Our Story Section -->
+<section class="story">
+    <div class="story-text">
+        <h2>Our Story</h2>
+        <p>ZarKash blends timeless tradition with modern elegance, crafting shawls that speak of heritage, warmth, and luxury.</p>
+    </div>
+    <div class="story-image">
+        <img src="shawl.story.jpg" alt="Our Story">
+    </div>
+</section>
 
-   <script>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 ZarKash. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript for carousel -->
+<script>
 const track = document.querySelector('.carousel-track');
 const items = Array.from(track.children);
 
