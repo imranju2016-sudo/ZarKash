@@ -2,91 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Zarkash | Pashmina Shawl</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zarkash • Classic Pashmina Shawl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Styles -->
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #333;
-      background: #fafafa;
-    }
-    header {
-      background: #fff;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      border-bottom: 1px solid #ddd;
-    }
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 40px auto;
-    }
-    .product-view {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: start;
-    }
-    .product-images {
-      flex: 1 1 400px;
-    }
-    .product-images img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    }
-    .product-info {
-      flex: 1 1 400px;
-    }
-    .product-info h1 {
-      font-size: 32px;
-    }
-    .price {
-      font-size: 28px;
-      color: #b12704;
-      margin: 15px 0;
-    }
-    .btn-buy {
-      background: #1a73e8;
-      color: white;
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      margin: 20px 0;
-    }
-    .btn-buy:hover {
-      background: #1558b0;
-    }
-    .details {
-      margin-top: 40px;
-      line-height: 1.6;
-    }
-    .details h2 {
-      margin-top: 0;
-    }
-    @media (max-width: 768px) {
-      .product-view {
-        flex-direction: column;
-      }
-    }
-  </style>
-
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    Zarkash — Luxury Pashmina Shawls
+  <!-- HEADER / SITE TITLE -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Zarkash</h1>
+      <p class="tagline">Luxurious Pashmina Shawls & Handcrafted Textiles</p>
+    </div>
   </header>
 
-  <!-- Product View -->
-  <section class="container">
-    <div class="p
+  <!-- MAIN CONTENT -->
+  <main class="container product-page">
 
+    <!-- PRODUCT PREVIEW + INFO -->
+    <div class="product-view">
+
+      <!-- IMAGE SECTION -->
+      <div class="product-images">
+        <img src="images/shawl1.jpg" alt="Classic Pashmina Shawl" class="main-img">
+      </div>
+
+      <!-- PRODUCT DETAILS -->
+      <div class="product-details">
+        <h2 class="product-title">Classic Pashmina Shawl</h2>
+        <p class="price">₹4,200</p>
+
+        <p class="short-description">
+          Wrap yourself in the timeless elegance of our Classic Pashmina Shawl — soft, warm, and exquisitely woven with heritage craftsmanship.
+        </p>
+
+        <button class="btn add-to-cart">BUY NOW</button>
+
+        <div class="product-info-block">
+          <h3>Product Details</h3>
+          <ul>
+            <li>100% Authentic Pashmina Wool</li>
+            <li>Hand-woven by Kashmiri Artisans</li>
+            <li>Dimension: 100 cm × 200 cm</li>
+            <li>Elegant, Lightweight, Warm</li>
+          </ul>
+        </div>
+
+        <div class="product-info-block">
+          <h3>About Pashmina</h3>
+          <p>
+            Pashmina is a rare and luxurious fiber from the Himalayan region, valued for its softness, warmth, and delicate sheen. Each shawl is a story of heritage and craftsmanship.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
