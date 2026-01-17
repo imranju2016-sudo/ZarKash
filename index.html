@@ -9,12 +9,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
 body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth; }
 
-/* Top Navigation */
+/* Navbar */
 .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    background: #1a1a1a; /* dark premium background */
+    background: #1a1a1a;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,14 +30,14 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 }
 .navbar ul li a {
     text-decoration: none;
-    color: #fff; /* contrasting color */
+    color: #fff;
     font-weight: bold;
     padding: 5px 0;
     transition: 0.3s;
 }
 .navbar ul li a:hover { color: #d4af37; }
 
-/* Hamburger menu (mobile) */
+/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -51,7 +51,7 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
     transition: 0.3s;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
     position: relative;
     height: 80vh;
@@ -78,7 +78,7 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 }
 .btn:hover { background: #b8962f; }
 
-/* Carousel Section */
+/* Carousel */
 .carousel-section { padding: 50px 20px; text-align: center; background: #f8f8f8; }
 .carousel-section h2 { margin-bottom: 30px; font-size: 2rem; }
 .carousel-container { overflow: hidden; max-width: 1200px; margin: 0 auto; }
@@ -98,7 +98,7 @@ body { color: #333; line-height: 1.6; background: #fff; scroll-behavior: smooth;
 .carousel-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
 .carousel-item:hover img { transform: scale(1.1); }
 
-/* Our Story Section */
+/* Story */
 .story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
 .story-text { flex: 1 1 400px; padding: 20px; }
 .story-text h2 { font-size: 2rem; margin-bottom: 20px; }
@@ -127,7 +127,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 </head>
 <body>
 
-<!-- Top Navigation -->
+<!-- Navbar -->
 <nav class="navbar">
     <div class="logo">ZarKash</div>
     <div class="hamburger" id="hamburger">
@@ -147,7 +147,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     </ul>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <header class="hero">
     <div class="overlay">
         <h1 class="brand-name">ZarKash</h1>
@@ -156,7 +156,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
     </div>
 </header>
 
-<!-- Carousel Section -->
+<!-- Carousel -->
 <section id="collection" class="carousel-section">
     <h2>Our Collection</h2>
     <div class="carousel-container">
@@ -178,7 +178,7 @@ footer { text-align: center; padding: 20px; background: #333; color: #fff; }
 <section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
 <section id="editorial" style="height:400px; text-align:center; padding:50px;"><h2>EDITORIAL Section</h2></section>
 
-<!-- Our Story Section -->
+<!-- Our Story -->
 <section class="story">
     <div class="story-text">
         <h2>Our Story</h2>
@@ -209,7 +209,7 @@ function moveCarousel() {
 }
 setInterval(moveCarousel, 3000);
 
-// Hamburger menu
+// Hamburger
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
