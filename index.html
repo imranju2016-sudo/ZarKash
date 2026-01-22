@@ -67,14 +67,16 @@
     <script>
         const grid = document.getElementById('grid');
 
-        // Array of all wrap images
-        const wrapImages = [
-            "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
-            "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
-            "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
-            "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
-            "wrap17.jpeg","wrap18.jpeg"
-        ];
+        // Loop from 1 to 18 and add images dynamically
+        for (let i = 1; i <= 18; i++) {
+            const img = document.createElement('img');
+            img.src = `images/wrap${i}.jpeg`;  // Make sure this path matches your folder
+            img.alt = `Wrap ${i}`;
+            grid.appendChild(img);
+        }
+    </script>
+</section>
+
 
         // Dynamically add images to the grid
         wrapImages.forEach(file => {
