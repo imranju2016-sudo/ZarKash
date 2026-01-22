@@ -168,8 +168,25 @@ img {
 /* GRID */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;          /* space between images */
+    padding: 20px;      /* space around the grid */
+}
+
+.product-grid img {
+    width: 100%;
+    height: 250px;      /* consistent height for all images */
+    object-fit: cover;  /* crops images nicely without distortion */
+    border-radius: 10px; /* soft corners */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
 }
 
 /* CARD */
