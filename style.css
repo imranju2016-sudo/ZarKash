@@ -168,17 +168,17 @@ img {
 /* GRID */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;          /* space between images */
-    padding: 20px;      /* space around the grid */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .product-grid img {
     width: 100%;
-    height: 250px;      /* consistent height for all images */
-    object-fit: cover;  /* crops images nicely without distortion */
-    border-radius: 10px; /* soft corners */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* subtle shadow */
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
