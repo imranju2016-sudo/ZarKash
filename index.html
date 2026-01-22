@@ -5,6 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZarKash</title>
 <link rel="stylesheet" href="style.css">
+<style>
+/* Product grid CSS */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+</style>
 </head>
 <body>
 
@@ -36,7 +59,7 @@
     </div>
 </header>
 
-<!-- Wraps Section (Clean & Ready) -->
+<!-- Wraps Section -->
 <section id="wraps" class="product-section">
     <h2>Wraps</h2>
     <div class="product-grid" id="grid"></div>
@@ -44,7 +67,7 @@
     <script>
         const grid = document.getElementById('grid');
 
-        // List all your image filenames here
+        // Array of all wrap images
         const wrapImages = [
             "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
             "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
@@ -53,54 +76,30 @@
             "wrap17.jpeg","wrap18.jpeg"
         ];
 
+        // Dynamically add images to the grid
         wrapImages.forEach(file => {
             const img = document.createElement('img');
-            img.src = `images/wraps/${file}`; // make sure this folder path matches
+            img.src = `images/wraps/${file}`; // Make sure this folder path matches your project
             img.alt = file.split('.')[0];     // Wrap 1, Wrap 2 etc.
             grid.appendChild(img);
         });
     </script>
 </section>
 
-const grid = document.getElementById('grid');
-
-// Loop from 1 to 18 and add images dynamically
-for (let i = 1; i <= 18; i++) {
-    const img = document.createElement('img');
-    img.src = `images/wrap${i}.jpeg`; // Make sure these files exist
-    img.alt = `Wrap ${i}`;
-    grid.appendChild(img);
-}
-</script>
-
-
-</section>
-
 <!-- Collection Section -->
 <section id="collection" class="carousel-section">
     <h2>Our Collection</h2>
-
     <div class="carousel-container">
         <div class="carousel-track">
-            <div class="carousel-item">
-                <img src="images/shawl1.jpg" alt="Shawl 1">
-            </div>
-
-            <div class="carousel-item">
-                <img src="images/shawl2.jpg" alt="Shawl 2">
-            </div>
-
-            <div class="carousel-item">
-                <img src="images/shawl3.jpg" alt="Shawl 3">
-            </div>
-
-            <div class="carousel-item">
-                <img src="images/shawl4.jpg" alt="Shawl 4">
-            </div>
+            <div class="carousel-item"><img src="images/shawl1.jpg" alt="Shawl 1"></div>
+            <div class="carousel-item"><img src="images/shawl2.jpg" alt="Shawl 2"></div>
+            <div class="carousel-item"><img src="images/shawl3.jpg" alt="Shawl 3"></div>
+            <div class="carousel-item"><img src="images/shawl4.jpg" alt="Shawl 4"></div>
         </div>
     </div>
 </section>
 
+<!-- Other Sections -->
 <section id="scarves" style="height:400px; text-align:center; padding:50px;"><h2>SCARVES Section</h2></section>
 <section id="mens" style="height:400px; text-align:center; padding:50px;"><h2>MEN'S Section</h2></section>
 <section id="home" style="height:400px; text-align:center; padding:50px;"><h2>HOME Section</h2></section>
@@ -142,7 +141,6 @@ setInterval(moveCarousel, 3000);
 // Hamburger
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
