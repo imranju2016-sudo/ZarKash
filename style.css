@@ -143,6 +143,7 @@ body {
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
+    cursor: default; /* normal cursor */
 }
 .zoom-modal img {
     max-width: 90%;
@@ -163,18 +164,53 @@ body {
 /* =========================
    CAROUSEL
 ========================= */
-.carousel-section { padding: 50px 20px; text-align: center; background: #f8f8f8; }
-.carousel-section h2 { margin-bottom: 30px; font-size: 2rem; }
-.carousel-container { overflow: hidden; max-width: 1200px; margin: 0 auto; }
-.carousel-track { display: flex; gap: 20px; overflow: hidden; white-space: nowrap; }
-.carousel-item { min-width: 300px; flex-shrink: 0; overflow: hidden; border-radius: 10px; cursor: pointer; transition: transform 0.3s; }
-.carousel-item img { width: 300px; height: auto; border-radius: 10px; transition: transform 0.3s ease; }
+.carousel-section { 
+    padding: 50px 20px; 
+    text-align: center; 
+    background: #f8f8f8; 
+}
+.carousel-section h2 { 
+    margin-bottom: 30px; 
+    font-size: 2rem; 
+}
+.carousel-container { 
+    overflow: hidden; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+.carousel-track { 
+    display: flex; 
+    gap: 20px; 
+    overflow: hidden; 
+    white-space: nowrap; 
+}
+.carousel-item { 
+    min-width: 300px; 
+    flex-shrink: 0; 
+    overflow: hidden; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: transform 0.3s; 
+}
+.carousel-item img { 
+    width: 300px; 
+    height: auto; 
+    border-radius: 10px; 
+    transition: transform 0.3s ease; 
+}
 .carousel-item img:hover { transform: scale(1.1); }
 
 /* =========================
    STORY SECTION
 ========================= */
-.story { display: flex; flex-wrap: wrap; padding: 50px 20px; align-items: center; max-width: 1200px; margin: auto; }
+.story { 
+    display: flex; 
+    flex-wrap: wrap; 
+    padding: 50px 20px; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: auto; 
+}
 .story-text { flex: 1 1 400px; padding: 20px; }
 .story-text h2 { font-size: 2rem; margin-bottom: 20px; }
 .story-image { flex: 1 1 400px; padding: 20px; }
