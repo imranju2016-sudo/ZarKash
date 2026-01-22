@@ -65,31 +65,30 @@
     <div class="product-grid" id="grid"></div>
 
     <script>
-const grid = document.getElementById('grid');
+        const grid = document.getElementById('grid');
 
-const wrapImages = [
-    "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
-    "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
-    "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
-    "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
-    "wrap17.jpeg","wrap18.jpeg"
-];
+        const wrapImages = [
+            "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
+            "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
+            "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
+            "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
+            "wrap17.jpeg","wrap18.jpeg"
+        ];
 
-wrapImages.forEach(file => {
-    const container = document.createElement('div');
-    container.className = 'zoom-container';
+        wrapImages.forEach(file => {
+            const container = document.createElement('div');
+            container.className = 'zoom-container'; // container for zoom
 
-    const img = document.createElement('img');
-    img.src = `images/wraps/${file}`;
-    img.alt = file.split('.')[0];
+            const img = document.createElement('img');
+            img.src = `images/wraps/${file}`; // path must match exactly
+            img.alt = file.split('.')[0];
 
-    container.appendChild(img);
-    grid.appendChild(container);
-});
-</script>
-
+            container.appendChild(img);
+            grid.appendChild(container);
+        });
     </script>
 </section>
+
 
     </script>
 </section>
