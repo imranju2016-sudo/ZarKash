@@ -14,7 +14,14 @@
     padding: 20px;
 }
 
-.product-grid img {
+.zoom-container {
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    cursor: zoom-in;
+}
+
+.zoom-container img {
     width: 100%;
     height: 250px;
     object-fit: cover;
@@ -23,9 +30,40 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.product-grid img:hover {
+.zoom-container img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Zoom Modal CSS */
+.zoom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.zoom-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.zoom-modal .close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -63,37 +101,6 @@
 <section id="wraps" class="product-section">
     <h2>Wraps</h2>
     <div class="product-grid" id="grid"></div>
-
-    <script>
-const grid = document.getElementById('grid');
-
-const wrapImages = [
-  "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
-  "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
-  "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
-  "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
-  "wrap17.jpeg","wrap18.jpeg"
-];
-
-wrapImages.forEach(file => {
-  const container = document.createElement('div');
-  container.className = 'zoom-container';
-
-  const img = document.createElement('img');
-  img.src = `images/${file}`; // <-- CHANGE THIS if your images are in images/wraps/
-  img.alt = file.split('.')[0];
-
-  container.appendChild(img);
-  grid.appendChild(container);
-});
-</script>
-
-        });
-    </script>
-</section>
-
-
-    </script>
 </section>
 
 <!-- Collection Section -->
@@ -135,6 +142,29 @@ wrapImages.forEach(file => {
 
 <!-- JS -->
 <script>
+// Dynamically add Wrap images
+const grid = document.getElementById('grid');
+
+const wrapImages = [
+  "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
+  "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
+  "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
+  "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
+  "wrap17.jpeg","wrap18.jpeg"
+];
+
+wrapImages.forEach(file => {
+  const container = document.createElement('div');
+  container.className = 'zoom-container';
+
+  const img = document.createElement('img');
+  img.src = `images/${file}`; // adjust path if needed
+  img.alt = file.split('.')[0];
+
+  container.appendChild(img);
+  grid.appendChild(container);
+});
+
 // Carousel
 const track = document.querySelector('.carousel-track');
 const items = Array.from(track.children);
@@ -154,8 +184,23 @@ const navMenu = document.getElementById('nav-menu');
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
+
+// Zoom Modal
+const modal = document.getElementById('zoom-modal');
+const modalImg = document.getElementById('zoomed-img');
+const closeBtn = modal.querySelector('.close');
+
+document.querySelectorAll('.zoom-container img').forEach(img => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+  });
+});
+
+closeBtn.onclick = () => modal.style.display = 'none';
 </script>
-    <!-- Zoom Modal -->
+
+<!-- Zoom Modal HTML -->
 <div id="zoom-modal" class="zoom-modal">
   <span class="close">&times;</span>
   <img class="zoomed-img" id="zoomed-img">
