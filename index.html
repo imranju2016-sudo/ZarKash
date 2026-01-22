@@ -39,10 +39,29 @@
 <!-- Wraps Section (Clean & Ready) -->
 <section id="wraps" class="product-section">
     <h2>Wraps</h2>
-
     <div class="product-grid" id="grid"></div>
 
-<script>
+    <script>
+        const grid = document.getElementById('grid');
+
+        // List all your image filenames here
+        const wrapImages = [
+            "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
+            "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
+            "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
+            "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
+            "wrap17.jpeg","wrap18.jpeg"
+        ];
+
+        wrapImages.forEach(file => {
+            const img = document.createElement('img');
+            img.src = `images/wraps/${file}`; // make sure this folder path matches
+            img.alt = file.split('.')[0];     // Wrap 1, Wrap 2 etc.
+            grid.appendChild(img);
+        });
+    </script>
+</section>
+
 const grid = document.getElementById('grid');
 
 // Loop from 1 to 18 and add images dynamically
