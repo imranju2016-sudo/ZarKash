@@ -110,7 +110,9 @@ body {
     padding: 20px;
 }
 
-/* Zoom container for click-to-zoom */
+/* =========================
+   ZOOM CONTAINERS
+========================= */
 .zoom-container {
     overflow: hidden;
     border-radius: 10px;
@@ -124,7 +126,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .zoom-container:hover img {
-    transform: scale(1.05); /* hover zoom for effect */
+    transform: scale(1.05); /* subtle hover effect */
 }
 
 /* =========================
@@ -133,7 +135,7 @@ body {
 .zoom-modal {
     display: none; /* hidden by default */
     position: fixed;
-    z-index: 10000; /* overlays content */
+    z-index: 10000; 
     top: 0;
     left: 0;
     width: 100%;
@@ -141,7 +143,6 @@ body {
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
-    cursor: crosshair;
 }
 .zoom-modal img {
     max-width: 90%;
