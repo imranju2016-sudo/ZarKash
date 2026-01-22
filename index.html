@@ -6,40 +6,38 @@
 <title>ZarKash</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Product grid CSS */
+/* =========================
+   PRODUCT GRID & ZOOM
+========================= */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
     padding: 20px;
 }
-
 .zoom-container {
     overflow: hidden;
     border-radius: 10px;
     position: relative;
     cursor: zoom-in;
 }
-
 .zoom-container img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease;
+}
+.zoom-container:hover img {
+    transform: scale(1.05); /* subtle hover effect */
 }
 
-.zoom-container img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* Zoom Modal CSS */
+/* =========================
+   ZOOM MODAL
+========================= */
 .zoom-modal {
-    display: none;
+    display: none; 
     position: fixed;
-    z-index: 1000;
+    z-index: 10000; 
     top: 0;
     left: 0;
     width: 100%;
@@ -47,15 +45,14 @@
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
-    display: flex;
+    cursor: default; /* normal cursor */
 }
-
 .zoom-modal img {
     max-width: 90%;
     max-height: 90%;
     border-radius: 10px;
+    transition: transform 0.1s ease-out;
 }
-
 .zoom-modal .close {
     position: absolute;
     top: 20px;
@@ -64,6 +61,18 @@
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+}
+
+/* =========================
+   OPTIONAL: Hover zoom effect for gallery
+========================= */
+.gallery img {
+    width: 300px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.gallery img:hover {
+    transform: scale(1.1);
 }
 </style>
 </head>
@@ -100,8 +109,16 @@
 <!-- Wraps Section -->
 <section id="wraps" class="product-section">
     <h2>Wraps</h2>
-    <div class="product-grid" id="grid"></div>
+    <div class="product-grid" id="grid">
+        <!-- Images will be inserted dynamically -->
+    </div>
 </section>
+
+<!-- Zoom Modal -->
+<div class="zoom-modal" id="zoom-modal">
+    <span class="close" id="modal-close">&times;</span>
+    <img id="zoomed-img">
+</div>
 
 <!-- Collection Section -->
 <section id="collection" class="carousel-section">
@@ -122,7 +139,6 @@
 <section id="home" style="height:400px; text-align:center; padding:50px;"><h2>HOME Section</h2></section>
 <section id="shop" style="height:400px; text-align:center; padding:50px;"><h2>SHOP BY Section</h2></section>
 <section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
-<section id="editorial" style="height:400px; text-align:center; padding:50px;"><h2>EDITORIAL Section</h2></section>
 
 <!-- Our Story -->
 <section class="story">
@@ -142,9 +158,12 @@
 
 <!-- JS -->
 <script>
-// Dynamically add Wrap images
-const grid = document.getElementById('grid');
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
 
+// Dynamically insert wrap images
 const wrapImages = [
   "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
   "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
@@ -152,59 +171,43 @@ const wrapImages = [
   "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
   "wrap17.jpeg","wrap18.jpeg"
 ];
-
+const grid = document.getElementById('grid');
 wrapImages.forEach(file => {
-  const container = document.createElement('div');
-  container.className = 'zoom-container';
-
-  const img = document.createElement('img');
-  img.src = `images/${file}`; // adjust path if needed
-  img.alt = file.split('.')[0];
-
-  container.appendChild(img);
-  grid.appendChild(container);
+    const container = document.createElement('div');
+    container.className = 'zoom-container';
+    const img = document.createElement('img');
+    img.src = `images/${file}`; // ensure correct folder path
+    img.alt = file.split('.')[0];
+    container.appendChild(img);
+    grid.appendChild(container);
 });
 
-// Carousel
+// Zoom modal functionality
+const modal = document.getElementById('zoom-modal');
+const modalImg = document.getElementById('zoomed-img');
+const closeBtn = document.getElementById('modal-close');
+
+document.querySelectorAll('.zoom-container img').forEach(img => {
+    img.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+    });
+});
+
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+
+// Simple carousel scroll
 const track = document.querySelector('.carousel-track');
 const items = Array.from(track.children);
 let index = 0;
-const itemWidth = items[0].getBoundingClientRect().width + 20;
-
 function moveCarousel() {
     index++;
     if(index >= items.length) index = 0;
-    track.style.transform = `translateX(-${index * itemWidth}px)`;
+    track.style.transform = `translateX(-${index * 320}px)`; // adjust width + gap
 }
 setInterval(moveCarousel, 3000);
-
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// Zoom Modal
-const modal = document.getElementById('zoom-modal');
-const modalImg = document.getElementById('zoomed-img');
-const closeBtn = modal.querySelector('.close');
-
-document.querySelectorAll('.zoom-container img').forEach(img => {
-  img.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    modalImg.src = img.src;
-  });
-});
-
-closeBtn.onclick = () => modal.style.display = 'none';
 </script>
-
-<!-- Zoom Modal HTML -->
-<div id="zoom-modal" class="zoom-modal">
-  <span class="close">&times;</span>
-  <img class="zoomed-img" id="zoomed-img">
-</div>
 
 </body>
 </html>
