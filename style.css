@@ -236,4 +236,33 @@ img {
   transform: scale(2); /* Adjust zoom factor */
   cursor: zoom-in;
 }
+.zoom-modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  display: flex; /* must be flex for centering */
+}
+
+.zoom-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.zoom-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
