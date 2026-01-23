@@ -20,6 +20,8 @@
     border-radius: 10px;
     position: relative;
     cursor: zoom-in;
+    background: #fff;
+    padding-bottom: 10px;
 }
 .zoom-container img {
     width: 100%;
@@ -28,7 +30,14 @@
     transition: transform 0.3s ease;
 }
 .zoom-container:hover img {
-    transform: scale(1.05); /* subtle hover effect */
+    transform: scale(1.05);
+}
+.price-tag {
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 600;
+    color: #a8705c;
+    font-size: 15px;
 }
 
 /* =========================
@@ -45,13 +54,12 @@
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
-    cursor: default; /* normal cursor */
+    cursor: default;
 }
 .zoom-modal img {
     max-width: 90%;
     max-height: 90%;
     border-radius: 10px;
-    transition: transform 0.1s ease-out;
 }
 .zoom-modal .close {
     position: absolute;
@@ -61,18 +69,6 @@
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-}
-
-/* =========================
-   OPTIONAL: Hover zoom effect for gallery
-========================= */
-.gallery img {
-    width: 300px;
-    height: auto;
-    transition: transform 0.3s ease;
-}
-.gallery img:hover {
-    transform: scale(1.1);
 }
 </style>
 </head>
@@ -109,9 +105,7 @@
 <!-- Wraps Section -->
 <section id="wraps" class="product-section">
     <h2>Wraps</h2>
-    <div class="product-grid" id="grid">
-        <!-- Images will be inserted dynamically -->
-    </div>
+    <div class="product-grid" id="grid"></div>
 </section>
 
 <!-- Zoom Modal -->
@@ -141,7 +135,6 @@
 <section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
 
 <!-- Our Story -->
-<!-- Our Story -->
 <section class="story">
     <div class="story-text">
         <h2>Our Story</h2>
@@ -157,43 +150,62 @@
     <p>&copy; 2026 ZarKash. All rights reserved.</p>
 </footer>
 
-<!-- JS -->
 <script>
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-// Dynamically insert wrap images
-const wrapImages = [
-  "wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","wrap4.jpeg",
-  "wrap5.jpeg","wrap6.jpeg","wrap7.jpeg","wrap8.jpeg",
-  "wrap9.jpeg","wrap10.jpeg","wrap11.jpeg","wrap12.jpeg",
-  "wrap13.jpeg","wrap14.jpeg","wrap15.jpeg","wrap16.jpeg",
-  "wrap17.jpeg","wrap18.jpeg"
+// Dynamically insert wrap images WITH prices
+const wrapProducts = [
+  { file: "wrap1.jpeg", price: "₹7,500" },
+  { file: "wrap2.jpeg", price: "₹8,200" },
+  { file: "wrap3.jpeg", price: "₹6,900" },
+  { file: "wrap4.jpeg", price: "₹9,100" },
+  { file: "wrap5.jpeg", price: "₹7,800" },
+  { file: "wrap6.jpeg", price: "₹8,600" },
+  { file: "wrap7.jpeg", price: "₹7,300" },
+  { file: "wrap8.jpeg", price: "₹9,500" },
+  { file: "wrap9.jpeg", price: "₹6,750" },
+  { file: "wrap10.jpeg", price: "₹8,900" },
+  { file: "wrap11.jpeg", price: "₹7,200" },
+  { file: "wrap12.jpeg", price: "₹9,800" },
+  { file: "wrap13.jpeg", price: "₹6,950" },
+  { file: "wrap14.jpeg", price: "₹8,400" },
+  { file: "wrap15.jpeg", price: "₹7,650" },
+  { file: "wrap16.jpeg", price: "₹9,250" },
+  { file: "wrap17.jpeg", price: "₹8,100" },
+  { file: "wrap18.jpeg", price: "₹7,900" }
 ];
+
 const grid = document.getElementById('grid');
-wrapImages.forEach(file => {
+
+wrapProducts.forEach(product => {
     const container = document.createElement('div');
     container.className = 'zoom-container';
+
     const img = document.createElement('img');
-    img.src = `images/${file}`; // ensure correct folder path
-    img.alt = file.split('.')[0];
+    img.src = `images/${product.file}`;
+    img.alt = product.file.split('.')[0];
+
+    const price = document.createElement('div');
+    price.className = 'price-tag';
+    price.textContent = product.price;
+
     container.appendChild(img);
+    container.appendChild(price);
     grid.appendChild(container);
+
+    img.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+    });
 });
 
 // Zoom modal functionality
 const modal = document.getElementById('zoom-modal');
 const modalImg = document.getElementById('zoomed-img');
 const closeBtn = document.getElementById('modal-close');
-
-document.querySelectorAll('.zoom-container img').forEach(img => {
-    img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    });
-});
 
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
 modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
@@ -205,7 +217,7 @@ let index = 0;
 function moveCarousel() {
     index++;
     if(index >= items.length) index = 0;
-    track.style.transform = `translateX(-${index * 320}px)`; // adjust width + gap
+    track.style.transform = `translateX(-${index * 320}px)`;
 }
 setInterval(moveCarousel, 3000);
 </script>
