@@ -1,363 +1,150 @@
-/* =========================
-   RESET & BASE
-========================= */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Arial', sans-serif; 
-}
-body { 
-    color: #333; 
-    line-height: 1.6; 
-    background: #fff; 
-    scroll-behavior: smooth; 
+/* ———————————— GLOBAL STYLES ———————————— */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-.navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: #1a1a1a;
+body {
+    font-family: "Montserrat", sans-serif;
+    color: #111;
+    background: #fff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ———————————— HEADER / NAV ———————————— */
+
+.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
+    padding: 1rem 3rem;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
 }
-.navbar .logo { 
-    font-size: 1.8rem; 
-    font-weight: bold; 
-    color: #d4af37; 
-}
-.navbar ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-.navbar ul li a {
-    text-decoration: none;
-    color: #fff;
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
     font-weight: bold;
-    padding: 5px 0;
-    transition: 0.3s;
 }
-.navbar ul li a:hover { color: #d4af37; }
 
-/* =========================
-   HERO SECTION (SLIDER)
-========================= */
-.hero {
-    position: relative;
+.nav-links a {
+    margin: 0 1rem;
+    font-weight: 500;
+}
+
+.nav-cart {
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+/* ———————————— HERO SECTION ———————————— */
+
+.hero-section {
     height: 80vh;
-    overflow: hidden;
-}
-
-.hero-slider {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    animation: heroSlide 28s infinite ease-in-out;
-    z-index: 1;
-}
-
-@keyframes heroSlide {
-    0%   { background-image: url("images/hero1.jpeg"); }
-    20%  { background-image: url("images/hero2.jpeg"); }
-    40%  { background-image: url("images/hero3.jpeg"); }
-    60%  { background-image: url("images/hero5.jpeg"); }
-    80%  { background-image: url("images/hero6.jpeg"); }
-    100% { background-image: url("images/hero7.jpeg"); }
-}
-
-/* Logo + text ABOVE moving photos */
-.hero .overlay {
-    position: relative;
-    z-index: 3;
-    background: rgba(0,0,0,0.45);
-    padding: 60px 70px;
+    background: url('images/hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #fff;
-    border-radius: 14px;
-    backdrop-filter: blur(4px);
+    padding: 2rem;
 }
 
-.brand-name { 
-    font-size: 3.2rem; 
-    letter-spacing: 4px; 
-    margin-bottom: 12px; 
+.hero-text h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3.2rem;
+    margin-bottom: 0.5rem;
 }
-.hero p { 
-    font-size: 1.2rem; 
-    margin-bottom: 22px; 
+
+.hero-text p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .btn {
-    background: #d4af37;
-    color: #000;
-    padding: 14px 30px;
-    text-decoration: none;
-    font-weight: bold;
+    background: #111;
+    color: #fff;
+    padding: 0.8rem 1.6rem;
     border-radius: 4px;
+    font-weight: bold;
     transition: 0.3s;
 }
-.btn:hover { background: #b8962f; }
 
-/* =========================
-   SECTION ORDER CONTROL
-========================= */
-main {
-    display: flex;
-    flex-direction: column;
+.btn:hover {
+    background: #444;
 }
 
-/* Make "Our Collection" appear FIRST */
-#our-collection {
-    order: 1;
-}
+/* ———————————— PRODUCTS ———————————— */
 
-/* Make Explore section appear AFTER */
-#explore-section {
-    order: 2;
-}
-
-/* Rename heading style to "Explore Collection" vibe */
-#our-collection h2 {
-    font-size: 42px;
-    letter-spacing: 3px;
-    margin-bottom: 45px;
-    color: #111;
-}
-#our-collection h2::after {
-    content: "Explore Collection";
-    display: block;
-    font-size: 14px;
-    letter-spacing: 5px;
-    margin-top: 8px;
-    color: #a8705c;
-    text-transform: uppercase;
-}
-
-/* =========================
-   EXPLORE COLLECTION CAROUSEL
-========================= */
-.explore-carousel {
-    overflow: hidden;
-    position: relative;
-    padding: 20px 0 50px;
-}
-
-.carousel-track {
-    display: flex;
-    width: max-content;
-    animation: autoScroll 25s linear infinite;
-}
-
-.carousel-track img {
-    width: 240px;
-    height: 300px;
-    object-fit: cover;
-    margin-right: 20px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-}
-
-.carousel-track img:hover {
-    transform: scale(1.05);
-}
-
-/* Auto moving animation */
-@keyframes autoScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.carousel-track:hover {
-    animation-play-state: paused;
-}
-
-/* =========================
-   PRODUCT SECTIONS
-========================= */
 .product-section {
-    padding: 90px 60px;
-    background-color: #f9f7f4;
+    padding: 3rem;
     text-align: center;
 }
+
 .product-section h2 {
-    font-size: 36px;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    color: #111;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
 }
 
-/* GRID */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 22px;
-    padding: 20px;
-}
-
-/* =========================
-   ZOOM CONTAINERS
-========================= */
-.zoom-container {
-    overflow: hidden;
-    border-radius: 14px;
-    position: relative;
-    cursor: zoom-in;
-    background: #fff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-.zoom-container img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
-}
-
-.zoom-container:hover img {
-    transform: scale(1.08);
-}
-
-/* Price Tag */
-.price-tag {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0,0,0,0.75);
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* WhatsApp Button */
-.whatsapp-btn {
-    display: block;
-    margin: 12px auto 16px;
-    width: fit-content;
-    background: #25D366;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 22px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.whatsapp-btn:hover {
-    background: #1ebe5b;
-    transform: translateY(-2px);
-}
-
-/* =========================
-   STORY SECTION
-========================= */
-.story-section {
-    padding: 90px 20px;
-    background: linear-gradient(135deg, #f8f6f2, #fff);
+.products-grid {
     display: flex;
     justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.story-box {
-    max-width: 900px;
-    background: #ffffff;
-    padding: 60px 70px;
-    border-radius: 18px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
-    text-align: center;
+.product-card {
+    border: 1px solid #eee;
+    padding: 1rem;
+    width: 260px;
+    transition: 0.3s;
 }
 
-.story-box h2 {
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    color: #111;
+.product-card:hover {
+    transform: scale(1.03);
 }
 
-.story-line {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 18px;
-    line-height: 1.8;
+.product-card img {
+    width: 100%;
+    height: auto;
 }
 
-.story-highlight {
-    font-size: 19px;
-    font-weight: bold;
-    color: #a8705c;
-    margin: 25px 0 35px;
-}
-
-.story-btn {
+.btn-small {
     display: inline-block;
-    padding: 14px 34px;
-    background: #a8705c;
+    margin-top: 0.75rem;
+    background: #111;
     color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-.story-btn:hover {
-    background: #8f5c4a;
-    transform: translateY(-2px);
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer { 
-    text-align: center; 
-    padding: 22px; 
-    background: #333; 
-    color: #fff; 
+/* ———————————— ABOUT / CONTACT ———————————— */
+
+.about-section,
+.contact-section {
+    padding: 2rem 3rem;
+    text-align: center;
+    font-size: 1.1rem;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media(max-width: 768px){
-    .navbar ul { 
-        position: absolute;
-        top: 65px;
-        left: -100%;
-        flex-direction: column;
-        background: #1a1a1a;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 20px 0;
-    }
-    .navbar ul.active { left: 0; }
-    .hamburger { display: flex; }
+/* ———————————— FOOTER ———————————— */
 
-    .hero .overlay {
-        padding: 30px 25px;
-    }
-
-    .brand-name {
-        font-size: 2.4rem;
-    }
-
-    .story-box {
-        padding: 40px 25px;
-    }
-
-    .carousel-track img {
-        width: 180px;
-        height: 220px;
-    }
+.footer {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
 }
