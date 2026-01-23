@@ -38,7 +38,6 @@
     font-weight: 600;
     color: #a8705c;
     font-size: 15px;
-}
 
 /* =========================
    ZOOM MODAL
@@ -84,7 +83,7 @@
     </div>
     <ul id="nav-menu">
         <li><a href="#collection">SHAWLS</a></li>
-      <li><a href="#shawls">SHAWLS</a></li>
+        <li><a href="#shawls">SHAWLS</a></li>
         <li><a href="#scarves">SCARVES</a></li>
         <li><a href="#mens">MEN'S</a></li>
         <li><a href="#home">HOME</a></li>
@@ -108,14 +107,13 @@
     <div class="product-grid" id="grid"></div>
 </section>
 
-
 <!-- Zoom Modal -->
 <div class="zoom-modal" id="zoom-modal">
     <span class="close" id="modal-close">&times;</span>
     <img id="zoomed-img">
 </div>
 
-<!-- Collection Section -->
+<!-- Collection Section (Carousel) -->
 <section id="collection" class="carousel-section">
     <h2>Mens Collection</h2>
     <div class="carousel-container">
@@ -130,49 +128,42 @@
 
 <!-- Other Sections -->
 <section id="scarves" style="height:400px; text-align:center; padding:50px;"><h2>SCARVES Section</h2></section>
+
 <!-- Men's Section -->
 <section id="mens" class="product-section">
     <h2>Men's Collection</h2>
     <div class="product-grid" id="mens-grid"></div>
 </section>
+
 <section id="home" style="height:400px; text-align:center; padding:50px;"><h2>HOME Section</h2></section>
 <section id="shop" style="height:400px; text-align:center; padding:50px;"><h2>SHOP BY Section</h2></section>
 <section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
 
+<!-- Our Story Section -->
 <section class="story-section">
   <div class="story-box">
-
     <h2>Our Story</h2>
-
     <p class="story-line">
       For 50 years, our family has been handcrafting pure Pashmina in the heart of Kashmir.
     </p>
-
     <p class="story-line">
       What began as a small artisan workshop is now a proud legacy of patience, precision,
       and timeless beauty.
     </p>
-
     <p class="story-line">
       Our shawls, rumals, and masars are loved across the Gulf countries for their softness,
       purity, and elegant finish.
     </p>
-
     <p class="story-line">
       Today, we bring this heritage into the digital world—making authentic Kashmiri luxury
       accessible beyond borders.
     </p>
-
     <p class="story-highlight">
       No middlemen. No compromises. Just tradition, delivered directly to you.
     </p>
-
     <a href="#collection" class="story-btn">Explore Our Collection</a>
-
   </div>
 </section>
-
-
 
 <!-- Footer -->
 <footer>
@@ -185,9 +176,41 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-// Dynamically insert shawl images WITH prices
-const shawlProducts = [
+// Helper function to render product grids
+function renderProducts(products, gridId) {
+    const grid = document.getElementById(gridId);
+    products.forEach(product => {
+        const container = document.createElement('div');
+        container.className = 'zoom-container';
 
+        const img = document.createElement('img');
+        img.src = `images/${product.file}`;
+        img.alt = product.file.split('.')[0];
+
+        // fallback for missing image
+        img.onerror = () => { 
+            console.log(`Missing image: images/${product.file}`);
+            img.src = 'images/placeholder.jpg'; 
+        };
+
+        const price = document.createElement('div');
+        price.className = 'price-tag';
+        price.textContent = product.price;
+
+        container.appendChild(img);
+        container.appendChild(price);
+        grid.appendChild(container);
+
+        // Zoom modal
+        img.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+        });
+    });
+}
+
+// Shawls products
+const shawlProducts = [
   { file: "wrap1.jpeg", price: "₹17,500" },
   { file: "wrap2.jpeg", price: "₹8,200" },
   { file: "wrap3.jpeg", price: "₹6,900" },
@@ -195,19 +218,10 @@ const shawlProducts = [
   { file: "wrap5.jpeg", price: "₹7,800" },
   { file: "wrap6.jpeg", price: "₹8,600" },
   { file: "wrap7.jpeg", price: "₹7,300" },
-  { file: "wrap8.jpeg", price: "₹9,500" },
-  { file: "wrap9.jpeg", price: "₹6,750" },
-  { file: "wrap10.jpeg", price: "₹8,900" },
-  { file: "wrap11.jpeg", price: "₹7,200" },
-  { file: "wrap12.jpeg", price: "₹9,800" },
-  { file: "wrap13.jpeg", price: "₹6,950" },
-  { file: "wrap14.jpeg", price: "₹8,400" },
-  { file: "wrap15.jpeg", price: "₹7,650" },
-  { file: "wrap16.jpeg", price: "₹9,250" },
-  { file: "wrap17.jpeg", price: "₹8,100" },
-  { file: "wrap18.jpeg", price: "₹7,900" }
+  { file: "wrap8.jpeg", price: "₹9,500" }
 ];
-// Dynamically insert MEN'S images WITH prices
+
+// Men's products
 const mensProducts = [
   { file: "men1.jpeg", price: "₹9,500" },
   { file: "men2.jpeg", price: "₹11,200" },
@@ -217,59 +231,14 @@ const mensProducts = [
   { file: "men6.jpeg", price: "₹9,800" }
 ];
 
-const mensGrid = document.getElementById('mens-grid');
-
-mensProducts.forEach(product => {
-    const container = document.createElement('div');
-    container.className = 'zoom-container';
-
-    const img = document.createElement('img');
-    img.src = `images/${product.file}`;
-    img.alt = product.file.split('.')[0];
-
-    const price = document.createElement('div');
-    price.className = 'price-tag';
-    price.textContent = product.price;
-
-    container.appendChild(img);
-    container.appendChild(price);
-    mensGrid.appendChild(container);
-
-    img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    });
-});
-
-const grid = document.getElementById('grid');
-
-shawlProducts.forEach(product => {
-    const container = document.createElement('div');
-    container.className = 'zoom-container';
-
-    const img = document.createElement('img');
-    img.src = `images/${product.file}`;
-    img.alt = product.file.split('.')[0];
-
-    const price = document.createElement('div');
-    price.className = 'price-tag';
-    price.textContent = product.price;
-
-    container.appendChild(img);
-    container.appendChild(price);
-    grid.appendChild(container);
-
-    img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    });
-});
+// Render products
+renderProducts(shawlProducts, 'grid');
+renderProducts(mensProducts, 'mens-grid');
 
 // Zoom modal functionality
 const modal = document.getElementById('zoom-modal');
 const modalImg = document.getElementById('zoomed-img');
 const closeBtn = document.getElementById('modal-close');
-
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
 modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
 
