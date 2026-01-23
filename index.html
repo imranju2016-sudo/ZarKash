@@ -130,7 +130,11 @@
 
 <!-- Other Sections -->
 <section id="scarves" style="height:400px; text-align:center; padding:50px;"><h2>SCARVES Section</h2></section>
-<section id="mens" style="height:400px; text-align:center; padding:50px;"><h2>MEN'S Section</h2></section>
+<!-- Men's Section -->
+<section id="mens" class="product-section">
+    <h2>Men's Collection</h2>
+    <div class="product-grid" id="mens-grid"></div>
+</section>
 <section id="home" style="height:400px; text-align:center; padding:50px;"><h2>HOME Section</h2></section>
 <section id="shop" style="height:400px; text-align:center; padding:50px;"><h2>SHOP BY Section</h2></section>
 <section id="about" style="height:400px; text-align:center; padding:50px;"><h2>ABOUT US Section</h2></section>
@@ -203,6 +207,39 @@ const shawlProducts = [
   { file: "wrap17.jpeg", price: "₹8,100" },
   { file: "wrap18.jpeg", price: "₹7,900" }
 ];
+// Dynamically insert MEN'S images WITH prices
+const mensProducts = [
+  { file: "men1.jpeg", price: "₹9,500" },
+  { file: "men2.jpeg", price: "₹11,200" },
+  { file: "men3.jpeg", price: "₹8,900" },
+  { file: "men4.jpeg", price: "₹10,500" },
+  { file: "men5.jpeg", price: "₹12,000" },
+  { file: "men6.jpeg", price: "₹9,800" }
+];
+
+const mensGrid = document.getElementById('mens-grid');
+
+mensProducts.forEach(product => {
+    const container = document.createElement('div');
+    container.className = 'zoom-container';
+
+    const img = document.createElement('img');
+    img.src = `images/${product.file}`;
+    img.alt = product.file.split('.')[0];
+
+    const price = document.createElement('div');
+    price.className = 'price-tag';
+    price.textContent = product.price;
+
+    container.appendChild(img);
+    container.appendChild(price);
+    mensGrid.appendChild(container);
+
+    img.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+    });
+});
 
 const grid = document.getElementById('grid');
 
