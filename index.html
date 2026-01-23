@@ -84,7 +84,7 @@
     </div>
     <ul id="nav-menu">
         <li><a href="#collection">SHAWLS</a></li>
-        <li><a href="#wraps">WRAPS</a></li>
+      <li><a href="#shawls">SHAWLS</a></li>
         <li><a href="#scarves">SCARVES</a></li>
         <li><a href="#mens">MEN'S</a></li>
         <li><a href="#home">HOME</a></li>
@@ -102,11 +102,12 @@
     </div>
 </header>
 
-<!-- Wraps Section -->
-<section id="wraps" class="product-section">
-    <h2>Wraps</h2>
+<!-- Shawls Section -->
+<section id="shawls" class="product-section">
+    <h2>Shawls</h2>
     <div class="product-grid" id="grid"></div>
 </section>
+
 
 <!-- Zoom Modal -->
 <div class="zoom-modal" id="zoom-modal">
@@ -180,8 +181,9 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-// Dynamically insert wrap images WITH prices
-const wrapProducts = [
+// Dynamically insert shawl images WITH prices
+const shawlProducts = [
+
   { file: "wrap1.jpeg", price: "₹17,500" },
   { file: "wrap2.jpeg", price: "₹8,200" },
   { file: "wrap3.jpeg", price: "₹6,900" },
@@ -204,7 +206,7 @@ const wrapProducts = [
 
 const grid = document.getElementById('grid');
 
-wrapProducts.forEach(product => {
+shawlProducts.forEach(product => {
     const container = document.createElement('div');
     container.className = 'zoom-container';
 
