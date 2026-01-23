@@ -128,7 +128,7 @@ main {
     overflow: hidden;
     border-radius: 14px;
     position: relative;
-    cursor: zoom-in;
+    cursor: pointer;
     background: #fff;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
@@ -153,25 +153,6 @@ main {
     border-radius: 20px;
     font-size: 13px;
     font-weight: bold;
-}
-
-/* WhatsApp Button */
-.whatsapp-btn {
-    display: block;
-    margin: 12px auto 16px;
-    width: fit-content;
-    background: #25D366;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 22px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-.whatsapp-btn:hover {
-    background: #1ebe5b;
-    transform: translateY(-2px);
 }
 
 /* Floating WhatsApp */
@@ -227,6 +208,46 @@ footer {
     color: #fff; 
 }
 
+/* Modal */
+#product-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#product-modal .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+#product-modal img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+#product-modal a {
+    display: inline-block;
+    background: #25D366;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* Responsive */
 @media(max-width: 768px){
     .navbar ul { 
@@ -249,7 +270,7 @@ footer {
 </head>
 <body>
 
-<!-- Navbar (Restored original tabs) -->
+<!-- Navbar -->
 <nav class="navbar">
   <div class="logo">ZarKash</div>
   <ul>
@@ -270,7 +291,7 @@ footer {
     </div>
 </section>
 
-<!-- Collection Sections -->
+<!-- Product Sections -->
 <main>
 <section id="our-collection" class="product-section">
     <h2>Our Shawls</h2>
@@ -295,6 +316,17 @@ footer {
 </section>
 </main>
 
+<!-- Product Modal -->
+<div id="product-modal">
+  <div class="modal-content">
+    <span id="close-modal">&times;</span>
+    <img id="modal-img" src="" alt="Product">
+    <h2 id="modal-title">Product Name</h2>
+    <p id="modal-price">₹4999</p>
+    <a id="modal-chat" href="#" target="_blank">Chat on WhatsApp</a>
+  </div>
+</div>
+
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/91XXXXXXXXXX" class="floating-whatsapp" target="_blank">💬 Chat</a>
 
@@ -313,7 +345,7 @@ setInterval(() => {
     heroIndex = (heroIndex + 1) % heroImages.length;
 }, 5000);
 
-// AUTO LOAD COLLECTION IMAGES
+// PRODUCT GRID
 document.addEventListener("DOMContentLoaded", () => {
     const collections = {
         "our-collection": ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg"],
@@ -327,31 +359,54 @@ document.addEventListener("DOMContentLoaded", () => {
             const container = document.createElement('div');
             container.className = 'zoom-container';
             container.innerHTML = `
-                <img src="images/${img}" alt="Product" loading="lazy">
-                <div class="price-tag">₹4999</div>
-                <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">Chat</a>
+                <a href="#" class="product-link" data-img="images/${img}" data-price="4999" data-title="ZarKash Product">
+                    <img src="images/${img}" alt="Product" loading="lazy">
+                    <div class="price-tag">₹4999</div>
+                </a>
             `;
             grid.appendChild(container);
         });
     }
 
-    // EXPLORE SECTION CAROUSEL
+    // EXPLORE CAROUSEL
     const exploreTrack = document.querySelector('.carousel-track');
     const exploreImages = ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","men1.jpeg","men2.jpeg"];
     exploreImages.forEach(img => {
         const item = document.createElement('div');
         item.className = 'zoom-container';
         item.innerHTML = `
-            <img src="images/${img}" alt="Shawl" loading="lazy">
-            <div class="price-tag">₹4999</div>
-            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">Chat</a>
+            <a href="#" class="product-link" data-img="images/${img}" data-price="4999" data-title="ZarKash Product">
+                <img src="images/${img}" alt="Shawl" loading="lazy">
+                <div class="price-tag">₹4999</div>
+            </a>
         `;
         exploreTrack.appendChild(item);
     });
-    exploreTrack.innerHTML += exploreTrack.innerHTML; // duplicate for infinite scroll
+    exploreTrack.innerHTML += exploreTrack.innerHTML;
+
+    // MODAL LOGIC
+    const modal = document.getElementById('product-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalChat = document.getElementById('modal-chat');
+    const closeModal = document.getElementById('close-modal');
+
+    document.querySelectorAll('.product-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            modalImg.src = link.dataset.img;
+            modalPrice.textContent = `₹${link.dataset.price}`;
+            modalTitle.textContent = link.dataset.title;
+            modalChat.href = `https://wa.me/91XXXXXXXXXX?text=Hello, I am interested in ${link.dataset.title}`;
+            modal.style.display = 'flex';
+        });
+    });
+
+    closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+    modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
 });
 </script>
 
 </body>
 </html>
-
