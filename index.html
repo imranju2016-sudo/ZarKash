@@ -108,10 +108,7 @@ main {
     display: flex;
     flex-direction: column;
 }
-#our-collection { order: 1; }
-#explore-section { order: 2; }
-
-#our-collection h2, #explore-section h2 {
+.product-section h2 {
     font-size: 42px;
     letter-spacing: 3px;
     margin-bottom: 45px;
@@ -252,11 +249,13 @@ footer {
 </head>
 <body>
 
-<!-- Navbar -->
+<!-- Navbar (Restored original tabs) -->
 <nav class="navbar">
   <div class="logo">ZarKash</div>
   <ul>
     <li><a href="#our-collection">Shawls</a></li>
+    <li><a href="#mens-collection">Men's Collection</a></li>
+    <li><a href="#musars-section">Musars</a></li>
     <li><a href="#explore-section">Explore</a></li>
   </ul>
 </nav>
@@ -271,10 +270,20 @@ footer {
     </div>
 </section>
 
-<!-- Collection Section -->
+<!-- Collection Sections -->
 <main>
 <section id="our-collection" class="product-section">
-    <h2>Our Collection</h2>
+    <h2>Our Shawls</h2>
+    <div class="product-grid"></div>
+</section>
+
+<section id="mens-collection" class="product-section">
+    <h2>Men's Collection</h2>
+    <div class="product-grid"></div>
+</section>
+
+<section id="musars-section" class="product-section">
+    <h2>Musars</h2>
     <div class="product-grid"></div>
 </section>
 
@@ -306,35 +315,43 @@ setInterval(() => {
 
 // AUTO LOAD COLLECTION IMAGES
 document.addEventListener("DOMContentLoaded", () => {
-    const collectionGrid = document.querySelector('#our-collection .product-grid');
-    const images = ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","men1.jpeg","men2.jpeg"];
-    images.forEach(img => {
-        const container = document.createElement('div');
-        container.className = 'zoom-container';
-        container.innerHTML = `
-            <img src="images/${img}" alt="Shawl" loading="lazy">
-            <div class="price-tag">₹4999</div>
-            <a href="https://wa.me/919682337490" class="whatsapp-btn">Chat</a>
-        `;
-        collectionGrid.appendChild(container);
-    });
+    const collections = {
+        "our-collection": ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg"],
+        "mens-collection": ["men1.jpeg","men2.jpeg"],
+        "musars-section": ["musar1.jpeg","musar2.jpeg","musar3.jpeg"]
+    };
+
+    for (const sectionId in collections) {
+        const grid = document.querySelector(`#${sectionId} .product-grid`);
+        collections[sectionId].forEach(img => {
+            const container = document.createElement('div');
+            container.className = 'zoom-container';
+            container.innerHTML = `
+                <img src="images/${img}" alt="Product" loading="lazy">
+                <div class="price-tag">₹4999</div>
+                <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">Chat</a>
+            `;
+            grid.appendChild(container);
+        });
+    }
 
     // EXPLORE SECTION CAROUSEL
     const exploreTrack = document.querySelector('.carousel-track');
-    images.forEach(img => {
+    const exploreImages = ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","men1.jpeg","men2.jpeg"];
+    exploreImages.forEach(img => {
         const item = document.createElement('div');
         item.className = 'zoom-container';
         item.innerHTML = `
             <img src="images/${img}" alt="Shawl" loading="lazy">
             <div class="price-tag">₹4999</div>
-            <a href="https://wa.me/919797112294" class="whatsapp-btn">Chat</a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">Chat</a>
         `;
         exploreTrack.appendChild(item);
     });
-    // Duplicate for infinite scroll
-    exploreTrack.innerHTML += exploreTrack.innerHTML;
+    exploreTrack.innerHTML += exploreTrack.innerHTML; // duplicate for infinite scroll
 });
 </script>
 
 </body>
 </html>
+
