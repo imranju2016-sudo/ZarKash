@@ -67,12 +67,12 @@ body {
 }
 
 @keyframes heroSlide {
-    0%   { background-image: url("images/wrap1.jpeg"); }
-    20%  { background-image: url("images/wrap2.jpeg"); }
-    40%  { background-image: url("images/wrap3.jpeg"); }
-    60%  { background-image: url("images/men1.jpeg"); }
-    80%  { background-image: url("images/men2.jpeg"); }
-    100% { background-image: url("images/wrap1.jpeg"); }
+    0%   { background-image: url("images/hero1.jpeg"); }
+    20%  { background-image: url("images/hero2.jpeg"); }
+    40%  { background-image: url("images/hero3.jpeg"); }
+    60%  { background-image: url("images/hero5.jpeg"); }
+    80%  { background-image: url("images/hero6.jpeg"); }
+    100% { background-image: url("images/hero7.jpeg"); }
 }
 
 /* Logo + text ABOVE moving photos */
