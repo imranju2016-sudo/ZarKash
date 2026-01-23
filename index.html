@@ -4,261 +4,336 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZarKash</title>
-<link rel="stylesheet" href="style.css">
-
 <style>
-/* PRODUCT GRID */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 26px;
-  padding: 40px 20px;
+/* =========================
+   RESET & BASE
+========================= */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Arial', sans-serif; 
 }
-.zoom-container {
-  overflow: hidden;
-  border-radius: 14px;
-  cursor: zoom-in;
-  background: #fff;
-}
-.zoom-container img {
-  width: 100%;
-  height: 340px;
-  object-fit: cover;
-  transition: transform .4s ease;
-}
-.zoom-container:hover img { transform: scale(1.07); }
-.price-tag {
-  text-align: center;
-  margin: 12px 0 0;
-  font-weight: 600;
-  font-size: 15px;
-  color: #a8705c;
+body { 
+    color: #333; 
+    line-height: 1.6; 
+    background: #fff; 
+    scroll-behavior: smooth; 
 }
 
-/* HERO */
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.navbar .logo { 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: #d4af37; 
+}
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+.navbar ul li a:hover { color: #d4af37; }
+
+/* =========================
+   HERO SECTION
+========================= */
 .hero {
-  position: relative;
-  height: 85vh;
-  overflow: hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
 }
 .hero-slider {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  animation: heroSlide 24s infinite ease-in-out;
-  filter: brightness(0.65);
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: background-image 1s ease-in-out;
 }
-@keyframes heroSlide {
-  0% { background-image:url('images/wrap1.jpeg'); }
-  25% { background-image:url('images/wrap2.jpeg'); }
-  50% { background-image:url('images/wrap3.jpeg'); }
-  75% { background-image:url('images/men1.jpeg'); }
-  100% { background-image:url('images/wrap1.jpeg'); }
+.hero .overlay {
+    position: relative;
+    z-index: 3;
+    background: rgba(0,0,0,0.45);
+    padding: 60px 70px;
+    text-align: center;
+    color: #fff;
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
 }
-.overlay {
-  position: relative;
-  z-index: 2;
-  background: rgba(0,0,0,.45);
-  padding: 60px 80px;
-  border-radius: 18px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  text-align:center;
+.brand-name { 
+    font-size: 3.2rem; 
+    letter-spacing: 4px; 
+    margin-bottom: 12px; 
 }
-.section-label {
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: #e0c98d;
-  margin-bottom: 10px;
-}
-.brand-name {
-  font-size:64px;
-  margin:10px 0;
+.hero p { 
+    font-size: 1.2rem; 
+    margin-bottom: 22px; 
 }
 .btn {
-  background:#d4af37;
-  color:#000;
-  padding:14px 34px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
-  margin-top: 12px;
+    background: #d4af37;
+    color: #000;
+    padding: 14px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.btn:hover { background: #b8962f; }
+
+/* =========================
+   SECTIONS
+========================= */
+main {
+    display: flex;
+    flex-direction: column;
+}
+#our-collection { order: 1; }
+#explore-section { order: 2; }
+
+#our-collection h2, #explore-section h2 {
+    font-size: 42px;
+    letter-spacing: 3px;
+    margin-bottom: 45px;
+    color: #111;
 }
 
-/* CAROUSEL */
-.carousel-section { padding:80px 20px; text-align:center; background:#f9f7f4; }
-.carousel-section h2 { font-size: 34px; margin-bottom: 30px; }
-.carousel-container { overflow:hidden; max-width:1200px; margin:0 auto; }
+/* Product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+    padding: 20px;
+}
+
+/* Zoom container */
+.zoom-container {
+    overflow: hidden;
+    border-radius: 14px;
+    position: relative;
+    cursor: zoom-in;
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.zoom-container img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.zoom-container:hover img {
+    transform: scale(1.08);
+}
+
+/* Price Tag */
+.price-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    display: block;
+    margin: 12px auto 16px;
+    width: fit-content;
+    background: #25D366;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+.whatsapp-btn:hover {
+    background: #1ebe5b;
+    transform: translateY(-2px);
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: #fff;
+    padding: 15px 18px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+}
+.floating-whatsapp:hover { transform: translateY(-3px); }
+
+/* Explore Carousel */
+.explore-carousel {
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0 50px;
+}
 .carousel-track {
-  display:flex;
-  gap:24px;
+    display: flex;
+    width: max-content;
+    animation: autoScroll 25s linear infinite;
 }
-.carousel-item img {
-  width:280px;
-  height:360px;
-  object-fit:cover;
-  border-radius:16px;
+.carousel-track img {
+    width: 240px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+.carousel-track img:hover { transform: scale(1.05); }
+@keyframes autoScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.carousel-track:hover { animation-play-state: paused; }
+
+/* Footer */
+footer { 
+    text-align: center; 
+    padding: 22px; 
+    background: #333; 
+    color: #fff; 
 }
 
-/* SECTIONS */
-.product-section {
-  padding: 90px 20px;
-  text-align:center;
-}
-.product-section h2 {
-  font-size: 36px;
-  margin-bottom: 30px;
-}
-
-/* ZOOM MODAL */
-.zoom-modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-.zoom-modal img { max-width:90%; max-height:90%; border-radius:12px; }
-.close {
-  position:absolute;
-  top:20px;
-  right:40px;
-  color:#fff;
-  font-size:40px;
-  cursor:pointer;
+/* Responsive */
+@media(max-width: 768px){
+    .navbar ul { 
+        position: absolute;
+        top: 65px;
+        left: -100%;
+        flex-direction: column;
+        background: #1a1a1a;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 20px 0;
+    }
+    .navbar ul.active { left: 0; }
+    .hero .overlay { padding: 30px 25px; }
+    .brand-name { font-size: 2.4rem; }
+    .carousel-track img { width: 180px; height: 220px; }
 }
 </style>
 </head>
-
 <body>
 
+<!-- Navbar -->
 <nav class="navbar">
   <div class="logo">ZarKash</div>
-  <ul id="nav-menu">
-    <li><a href="#shawls">SHAWLS</a></li>
-    <li><a href="#musars">MUSARS</a></li>
-    <li><a href="#mens">MEN'S COLLECTION</a></li>
-    <li><a href="#home">HOME</a></li>
-    <li><a href="#shop">SHOP BY</a></li>
-    <li><a href="#about">ABOUT US</a></li>
+  <ul>
+    <li><a href="#our-collection">Shawls</a></li>
+    <li><a href="#explore-section">Explore</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="home">
-  <div class="hero-slider"></div>
-  <div class="overlay">
-    <div class="section-label">EXPLORE COLLECTION</div>
-    <h1 class="brand-name">ZarKash</h1>
-    <p>Luxury Handcrafted Shawls</p>
-    <a href="#shawls" class="btn">Explore Collection</a>
-  </div>
-</header>
-
-<!-- EXPLORE COLLECTION STRIP -->
-<section class="carousel-section">
-  <h2>Explore Collection</h2>
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <div class="carousel-item"><img src="images/wrap1.jpeg"></div>
-      <div class="carousel-item"><img src="images/wrap2.jpeg"></div>
-      <div class="carousel-item"><img src="images/wrap3.jpeg"></div>
-      <div class="carousel-item"><img src="images/men1.jpeg"></div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-slider"></div>
+    <div class="overlay">
+        <h1 class="brand-name">ZarKash</h1>
+        <p>Pure Hand-Knitted Pashmina Shawls from Kashmir</p>
+        <a href="#our-collection" class="btn">Shop Now</a>
     </div>
-  </div>
 </section>
 
-<!-- SHAWLS -->
-<section id="shawls" class="product-section">
-  <h2>Shawls Collection</h2>
-  <div class="product-grid" id="grid"></div>
+<!-- Collection Section -->
+<main>
+<section id="our-collection" class="product-section">
+    <h2>Our Collection</h2>
+    <div class="product-grid"></div>
 </section>
 
-<!-- MEN -->
-<section id="mens" class="product-section">
-  <h2>Men's Collection</h2>
-  <div class="product-grid" id="mens-grid"></div>
+<section id="explore-section" class="product-section">
+    <h2>Explore More</h2>
+    <div class="explore-carousel">
+        <div class="carousel-track"></div>
+    </div>
 </section>
+</main>
 
-<!-- STORY -->
-<section class="story-section">
-  <div class="story-box">
-    <h2>Our Story</h2>
-    <p>50 years of handcrafted Pashmina from Kashmir.</p>
-    <p>Shawls, rumals & masars loved across the Gulf.</p>
-    <p>Now bringing our heritage into the digital world.</p>
-    <p><strong>No middlemen. No compromises.</strong></p>
-  </div>
-</section>
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/91XXXXXXXXXX" class="floating-whatsapp" target="_blank">💬 Chat</a>
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer>
-  <p>&copy; 2026 ZarKash. All rights reserved.</p>
+    &copy; 2026 ZarKash. All Rights Reserved.
 </footer>
 
-<!-- ZOOM MODAL -->
-<div class="zoom-modal" id="zoom-modal">
-  <span class="close" id="modal-close">&times;</span>
-  <img id="zoomed-img">
-</div>
-
 <script>
-function renderProducts(products, gridId) {
-  const grid = document.getElementById(gridId);
-  products.forEach(p => {
-    const box = document.createElement('div');
-    box.className = 'zoom-container';
+// HERO SLIDER
+const hero = document.querySelector('.hero-slider');
+const heroImages = ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","men1.jpeg","men2.jpeg"];
+let heroIndex = 0;
+setInterval(() => {
+    hero.style.backgroundImage = `url('images/${heroImages[heroIndex]}')`;
+    heroIndex = (heroIndex + 1) % heroImages.length;
+}, 5000);
 
-    const img = document.createElement('img');
-    img.src = `images/${p.file}`;
-    img.onerror = () => img.src = 'images/placeholder.jpg';
+// AUTO LOAD COLLECTION IMAGES
+document.addEventListener("DOMContentLoaded", () => {
+    const collectionGrid = document.querySelector('#our-collection .product-grid');
+    const images = ["wrap1.jpeg","wrap2.jpeg","wrap3.jpeg","men1.jpeg","men2.jpeg"];
+    images.forEach(img => {
+        const container = document.createElement('div');
+        container.className = 'zoom-container';
+        container.innerHTML = `
+            <img src="images/${img}" alt="Shawl" loading="lazy">
+            <div class="price-tag">₹4999</div>
+            <a href="https://wa.me/919682337490" class="whatsapp-btn">Chat</a>
+        `;
+        collectionGrid.appendChild(container);
+    });
 
-    const price = document.createElement('div');
-    price.className = 'price-tag';
-    price.textContent = p.price;
-
-    box.appendChild(img);
-    box.appendChild(price);
-    grid.appendChild(box);
-
-    img.onclick = () => {
-      modal.style.display = 'flex';
-      modalImg.src = img.src;
-    };
-  });
-}
-
-const shawlProducts = [
- { file:"wrap1.jpeg", price:"₹17,500" },
- { file:"wrap2.jpeg", price:"₹8,200" },
- { file:"wrap3.jpeg", price:"₹6,900" },
- { file:"wrap4.jpeg", price:"₹9,100" },
- { file:"wrap5.jpeg", price:"₹12,800" },
- { file:"wrap6.jpeg", price:"₹15,300" }
-];
-
-const mensProducts = [
- { file:"men1.jpeg", price:"₹9,500" },
- { file:"men2.jpeg", price:"₹11,200" },
- { file:"men3.jpeg", price:"₹8,900" }
-];
-
-renderProducts(shawlProducts,'grid');
-renderProducts(mensProducts,'mens-grid');
-
-const modal = document.getElementById('zoom-modal');
-const modalImg = document.getElementById('zoomed-img');
-document.getElementById('modal-close').onclick = () => modal.style.display='none';
-modal.onclick = e => { if(e.target===modal) modal.style.display='none'; };
+    // EXPLORE SECTION CAROUSEL
+    const exploreTrack = document.querySelector('.carousel-track');
+    images.forEach(img => {
+        const item = document.createElement('div');
+        item.className = 'zoom-container';
+        item.innerHTML = `
+            <img src="images/${img}" alt="Shawl" loading="lazy">
+            <div class="price-tag">₹4999</div>
+            <a href="https://wa.me/919797112294" class="whatsapp-btn">Chat</a>
+        `;
+        exploreTrack.appendChild(item);
+    });
+    // Duplicate for infinite scroll
+    exploreTrack.innerHTML += exploreTrack.innerHTML;
+});
 </script>
 
 </body>
